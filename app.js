@@ -58,17 +58,26 @@ app.get("/api/expenses",async(req,res)=>
         )
         res.status(200).json(updatedExpense);
     })
-    app.delete("/api/expenses/:id", async (req, res) => {  
-        const { id } = req.params;  
-        try {  
-            const deletedExpense = await expenseModel.findOneAndDelete({ id });  
+    // app.delete("/api/expenses/:id", async (req, res) => {  
+    //     const { id } = req.params;  
+    //     try {  
+    //         const deletedExpense = await expenseModel.findOneAndDelete({ id });  
             
-            if (!deletedExpense) {  
-                return res.status(404).json({ message: "Expense not found" });  
-            }  
+    //         if (!deletedExpense) {  
+    //             return res.status(404).json({ message: "Expense not found" });  
+    //         }  
             
-            res.status(200).json({ message: "Expense deleted successfully", deletedExpense });  
-        } catch (error) {  
-            res.status(500).json({ message: "Error deleting expense", error });  
-        }  
+    //         res.status(200).json({ message: "Expense deleted successfully", deletedExpense });  
+    //     } catch (error) {  
+    //         res.status(500).json({ message: "Error deleting expense", error });  
+    //     }  
+    // });
+
+
+    app.delete("/api/expenses", async (req, res) => { 
+        const deletedexpenses = await expenseModel.deleteMany();
+        res.status(200).json(deletedexpenses);
     });
+    
+
+    
