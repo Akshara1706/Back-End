@@ -21,7 +21,7 @@ const expenseSchema = new mongoose.Schema({
     amount: { type: Number, required: true },
 });
 
-const expenseModel = mongoose.model("expense-tracker",expenseSchema);
+const expenseModel = mongoose.model("expense-trackers",expenseSchema);
 app.use(express.json())
 app.post("/api/expenses",async (req,res) => {
     const {title,amount}=req.body;
